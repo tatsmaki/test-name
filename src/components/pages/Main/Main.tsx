@@ -4,7 +4,7 @@ export const Main = () => {
   const navigate = useNavigate()
 
   const handleClick = () => {
-    navigate('../secondary')
+    navigate('../tree')
   }
 
   return (

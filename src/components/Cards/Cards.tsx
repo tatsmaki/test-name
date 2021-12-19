@@ -1,45 +1,34 @@
-import { useState, ChangeEvent } from "react"
+import { FC } from "react"
+import { CHRISTMAS_TOYS } from "../../constants"
 import { Card } from "../Card/Card"
+import { ColorsFilter } from "../Filters/Filters"
 
-const CARDS = [
-  {
-    id: 1,
-    name: 'toy',
-    color: 'red'
-  },
-  {
-    id: 2,
-    name: 'candy',
-    color: 'white'
-  },
-  {
-    id: 3,
-    name: 'wow',
-    color: 'yellow',
-    cheap: true,
-  },
-]
+type CardsProps = {
+  search: string
+  colorsFilter: ColorsFilter
+}
 
-export const Cards = () => {
-  const [ filter, setFilter ] = useState('')
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFilter(event.target.value)
-  }
-
+export const Cards: FC<CardsProps> = ({ search, colorsFilter }) => {
   return (
     <section>
-      {CARDS
-        .filter((card) => card.name.toUpperCase().includes(filter.toUpperCase()))
+      {CHRISTMAS_TOYS
+        .filter((toy) => {
+          const isMatchesSearch = toy.name.toUpperCase().includes(search.toUpperCase())
+          const isMatchesColorFilter = !colorsFilter.length || colorsFilter.includes(toy.color)
+          
+          if (isMatchesSearch && isMatchesColorFilter) {
+            return true
+          }
+    
+          return false
+        })
         .map((card) => (
           <Card
             key={card.id}
             color={card.color}
             name={card.name}
-            cheap={card.cheap}
           />
         ))}
-      <input value={filter} onChange={handleChange} />
     </section>
   )
 }

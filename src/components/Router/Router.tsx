@@ -5,15 +5,15 @@ import {
 } from "react-router-dom";
 import { Navigation } from "../Navigation/Navigation";
 import { Main } from "../pages/Main/Main";
-import { Secondary } from "../pages/Secondary/Secondary";
+import { ChristmasTree } from "../pages/ChristmasTree/ChristmasTree";
 
 export const Router = () => {
   return (
     <BrowserRouter>
       <Navigation />
       <Routes>
-        <Route path='/main' element={<Main />} />
-        <Route path='/secondary' element={<Secondary />} />
+        <Route path='/toys' element={<Main />} />
+        <Route path='/tree' element={<ChristmasTree />} />
       </Routes>
     </BrowserRouter>
   )

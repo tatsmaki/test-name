@@ -1,0 +1,67 @@
+@use 'src/colors';
+
+.checkbox {
+  display: inline-flex;
+  user-select: none;
+
+  &:hover {
+    .label::before {
+      box-shadow: 0 0 5px grey;
+    }
+  }
+}
+
+.input {
+  opacity: 0;
+
+  &:checked + .label::before {
+    background-image: url('./checked.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+.label {
+  margin-left: 16px;
+  position: relative;
+  color: white;
+
+  &::before {
+    position: absolute;
+    left: -36px;
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+  }
+}
+
+.label[data-color='white'] {
+  &::before {
+    background-color: white;
+  }
+}
+
+.label[data-color='yellow'] {
+  &::before {
+    background-color: #eeee19;
+  }
+}
+
+.label[data-color='red'] {
+  &::before {
+    background-color: #d82929;
+  }
+}
+
+.label[data-color='blue'] {
+  &::before {
+    background-color: #4681b5;
+  }
+}
+
+.label[data-color='green'] {
+  &::before {
+    background-color: #268a26;
+  }
+}
